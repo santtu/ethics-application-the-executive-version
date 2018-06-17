@@ -1,5 +1,153 @@
-<html>
-<body>
-<h1>Hello, world!</h1>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Santeri Paavolainen">
+    <title>Ethics Application - The Executive Version</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+	<div class="col">
+	  <h1 class="display-1">
+	    Ethics Helper Application
+	  </h1>
+	  <h2 class="text-muted">Executive Version</h2>
+
+	  <p>
+	    This is the tool to help you with all your problems with
+	    making <em>ethical choices</em>! Just answer these
+	    easy, step-by-step questions:
+	  </p>
+	</div>
+      </div>
+      <div class="row mx-auto p-auto">
+	<div class="col p-5 bg-light border rounded" style="font-size: 2rem;">
+
+	  <div id="intro">
+	    <p>
+	      Are you facing a problem where your decision affects the
+	      <em>happiness, livelihood, wellbeing or health</em>
+	      of other people?
+	    </p>
+
+	    <button id="introYes" class="btn btn-danger" role="button">Yes</button>
+	    <button id="introNo" class="btn btn-success" role="button">No</button>
+	  </div>
+
+	  <div id="good" style="display: none;">
+	    <p>
+	      Good!
+	    </p>
+	    <p>Just carry on...</p>
+
+	    <button class="reset btn btn-primary btn-sm">Restart?</button>
+	  </div>
+
+	  <div id="bad" style="display: none;">
+	    <p>
+	      Your decision may affect the <em>happiness,
+		livelihood, wellbeing or health</em> of other
+		people.
+	    </p>
+
+	    <p>
+	      <b>Now consider the following carefully:</b>
+
+	      Are you going to be personally benefit from the
+	      decision, by increase of the value of the stock you
+	      hold, corporate bonuses etc. even if it negatively
+	      affects people's <em>happiness, livelihood, wellbeing
+	      or health</em>?
+	    </p>
+
+	    <button id="badYes" class="btn btn-danger" role="button">Yes</button>
+	    <button id="badNo" class="btn btn-success disabled" role="button" data-toggle="tooltip" data-placement="top" title="Surely you can turn the situation to your benefit? Think again!">No</button>
+	  </div>
+
+	  <div id="final" style="display: none;">
+	    <p>
+	      Your decision may to affect the <em>happiness,
+		livelihood, wellbeing or health</em> of other
+		people. You are also going to benefit from making that
+		decision.
+	    </p>
+	    <p>
+	      They say greed is good ... <b>go for it!</b>
+	    </p>
+
+	    <button class="reset btn btn-primary btn-sm">Restart?</button>
+	  </div>
+
+
+	</div>
+      </div>
+
+      <br/>
+      <br/>
+      <br/>
+
+      <div id="caveatdiv" class="row float-right">
+	<div class="col">
+	  <a href="#caveats" id="caveat">Caveat...</a>
+	</div>
+      </div>
+
+      <div class="row" id="caveats" style="display: none;">
+	<div class="col">
+	  <p>
+	    This application is obviously a spoof on corporate greed. If
+	    you are an executive, and unsure about the meaning of
+	    ethics, I suggest you take a long vacation. Long, like,
+	    until your retirement.
+	  </p>
+	</div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+      // yes, there probably exists a plugin to do this ... which I'd
+      // spend more time looking for than just writing the logic out
+      $(function() {
+      $('[data-toggle="tooltip"]').tooltip()
+      var reset = function() {
+      $('#intro').show();
+      $('#good').hide();
+      $('#final').hide();
+      $('#caveatdiv').show();
+      $('#caveats').hide();
+      };
+      reset();
+      $('#bad').hide();
+      $('#introYes').click(function() {
+      console.log("here");
+      $('#intro').hide();
+      $('#bad').show();
+      });
+      $('#introNo').click(function() {
+      $('#intro').hide();
+      $('#good').show();
+      });
+      $('#badYes').click(function() {
+      $('#bad').hide();
+      $('#final').show();
+      });
+      $('#caveat').click(function() {
+      $('#caveatdiv').hide();
+      $('#caveats').show();
+      return false;
+      });
+      $('.reset').click(reset);
+      });
+    </script>
+  </body>
 </html>
